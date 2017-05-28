@@ -1,7 +1,7 @@
 const config = {}
 
 config.mongo= {
-	"url": "mongodb://localhost:27017/chat",
+	"url": "mongodb://root:root@chat-shard-00-00-lf64q.mongodb.net:27017,chat-shard-00-01-lf64q.mongodb.net:27017,chat-shard-00-02-lf64q.mongodb.net:27017/chat?ssl=true&replicaSet=chat-shard-0&authSource=admin",
 	"secret": "this is my secret key"
 }
 
