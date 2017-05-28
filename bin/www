@@ -33,6 +33,7 @@ var bayeux = new faye.NodeAdapter({
     mount: '/faye',
     timeout: 5
 });
+app.locals.fayeClient = bayeux.getClient();
 bayeux.attach(server);
 
 

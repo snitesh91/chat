@@ -1,7 +1,6 @@
 var express = require('express');
 var Faye = require("faye");
 const passport = require('passport');
-var fayeClient = new Faye.Client('http://localhost:3000/faye');
 const nodemailer = require('nodemailer');
 const config = require('../config/index');
 var router = express.Router();
@@ -50,6 +49,7 @@ let mailOptions = {
 
 	//if client is available sent it to him else sent to his email
 router.post('/sendToClient', function(req, res, next) {
+	var fayeClient = req.app.locals.fayeClient;
 	console.log('request received');
 	var user = req.body.user;
 	var channel = "/" + user.guestId;
