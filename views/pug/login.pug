@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  .main.container
+    .row
+      .col-md-6.col-md-offset-3
+        h1.display-4.m-b-2 Sign Up
+        h3= message
+
+        // register form
+        form(method='POST' action='/login')
+          div.form-group
+            label(for='roomNo') Room No:
+            input#roomNo.form-control(type='number' placeholder='111' name='roomNo' required='true')
+            input#clientId.form-control(type='hidden' name='clientId' value= clientId)
+          div.form-group
+            label(for='lastName') Last Name:
+            input#lastName.form-control(type='text' placeholder='Singla' name='lastName' required='true')         
+          button.btn.btn-primary(type='submit') Sign up

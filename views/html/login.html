@@ -1,0 +1,31 @@
+<html>
+	<head>
+	<title>Login</title>
+	 <link rel = "stylesheet" type = "text/css" href = "/stylesheets/style.css" />
+	 <script type="text/javascript"  src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<form method="POST" action="/validate/sendtoken">
+			<table width="20%" bgcolor="0099CC" align="center">
+				<tr>
+					<td colspan=2><center><font size=4><b>Welcome</b></font></center></td>
+				</tr>
+
+				<tr>
+					<td>Email:</td>
+					<td><input type="email" size=25 name="user" required="true"></td>
+				</tr>
+				<tr>
+					<td>Contact No:</td>
+					<td><input type="number" size=25 name="phone"></td>
+				</tr>				
+
+				<tr>
+					<td ><input type="Reset"></td>
+					<td><input type="submit" onclick="check(this.form)" value="Login"></td>
+				</tr>
+
+			</table>
+		</form>
+	</body>
+</html>

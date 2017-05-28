@@ -1,0 +1,28 @@
+doctype html
+html
+	head
+	title= title
+	link(rel='stylesheet', href='/stylesheets/style.css')
+	script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+	script(type='text/javascript', src='http://localhost:3000/faye/client.js')
+	script.
+		var client = new Faye.Client('http://localhost:3000/faye');
+	script.
+		function appendMessage(time, message){
+		$('#chatbox').append(message + '<br />');
+		};
+		function loadChatHistory(){
+		$.ajax({
+		type: "GET",
+		url: "http://localhost:3000/restricted/getChatHistory",
+		async: false,  
+		success:function(data) {
+		var history = data.history;
+		history.forEach(function(e){
+		appendMessage(e.time, e.message);
+		})
+		}
+		});
+
+		}
+	block content
