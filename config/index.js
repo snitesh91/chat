@@ -12,6 +12,8 @@ config.mail={
 	"subject": "Conversation"
 }
 
+config.serverMail = 'deepak.sharma1386@gmail.com'
+
 config.PORT= process.env.PORT || '80';
 
 module.exports = config
