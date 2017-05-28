@@ -1,56 +1,53 @@
 extends layout
 
 block content
-  body(onload='loadChatHistory()')
-    script(type='text/javascript', src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js')
-    script.
-        $(document).ready(function(){
-
-        $("#exit").click(function(){
-        var exit = confirm("Are you sure you want to end the session?");
-        if(exit==true){window.location = '/logout';}
-        });
-
-        var channelName = $('#guestId').val();
-        var subscription = client.subscribe('/'+channelName, function(message) {
-        appendMessage(null, message.msg);
-        });
-
-        $("#submitmsg").click(function(){
-        publish();
-        });
+    body(onload='loadChatHistory()')
+        script(type='text/javascript', src='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js')
+        script.
+            $(document).ready(function(){
+            $("#exit").click(function(){
+            var exit = confirm("Are you sure you want to end the session?");
+            if(exit==true){window.location = '/logout';}
+            });
+            var channelName = $('#guestId').val();
+            var subscription = client.subscribe('/'+channelName, function(message) {
+            appendMessage(null, message.msg);
+            });
         
-        $('#usermsg').keyup(function(e){
-        if(e.keyCode==13){
-        publish();
-        }});
+            $("#submitmsg").click(function(){
+            publish();
+            });
+            $('#usermsg').keyup(function(e){
+            if(e.keyCode==13){
+            publish();
+            }});
 
-        function publish(){
-        var message = $('#usermsg').val();
-        var currentTime = moment().format('YYYY-M-D');
-        appendMessage(currentTime, message);
-        $.ajax({
-        type: "POST",
-        url: "http://localhost:3000/restricted/sendToServer",
-        data: {"message": message, "time": currentTime}
-        });
-        $('#usermsg').val('');
-        };
+            function publish(){
+            var message = $('#usermsg').val();
+            var currentTime = moment().format('YYYY-M-D');
+            appendMessage(currentTime, message);
+            $.ajax({
+            type: "POST",
+            url: appName +"/restricted/sendToServer",
+            data: {"message": message, "time": currentTime}
+            });
+            $('#usermsg').val('');
+            };
 
-        $('#usermsg').focus();
+            $('#usermsg').focus();
 
-        });
+            });
 
     #wrapper
-      #menu
-        p.welcome
-          | Welcome, #{user.name.firstName} #{user.name.lastName} 
-          b
-        p.logout
-          a#exit Exit Chat
-        div(style='clear:both')
-      #chatbox
-      div
-        input#guestId(name='guestId', type='hidden' value= user.guestId)
-        input#usermsg(name='usermsg', type='text', size='63')
-        input#submitmsg(name='submitmsg', type='submit', value='Send')
+        #menu
+            p.welcome
+                | Welcome, #{user.name.firstName} #{user.name.lastName} 
+                b
+            p.logout
+                a#exit Exit Chat
+            div(style='clear:both')
+        #chatbox
+        div
+            input#guestId(name='guestId', type='hidden' value= user.guestId)
+            input#usermsg(name='usermsg', type='text', size='63')
+            input#submitmsg(name='submitmsg', type='submit', value='Send')
