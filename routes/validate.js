@@ -49,11 +49,10 @@ function authenticationMiddleware () {
           "guestId":"12345",
           "clientId": "1001",
   				"name":{
-            "firstName": "nitesh",
-            "lastName" : "singla"
+            "firstName": "John",
+            "lastName" : "Smith"
           },
-          "roomNo" : "123",
-          "emailId": "snitesh91@gmail.com"
+          "roomNo" : "123"
           }
   	};
 
